@@ -1,61 +1,42 @@
-"use client";
 import Image from "next/image";
-import { ModeToggle } from "@/components/shared/theme-toggle";
-import { useUserData } from "@/hooks/repository-hooks/user/use-user";
-import Link from "next/link";
-import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ModeToggle } from '@/components/shared/theme-toggle';
+import { repositoryHost } from '@/repositories';
+import { databaseService } from "@/services/database/database-admin-service";
+import { serviceHost } from '@/services';
 
-export default function Home() {
-  const data = useUserData("user-id");
+const cmsService = serviceHost.getCmsService()
+const userRepository = repositoryHost.getUserServerRepository(databaseService);
+const contentRepository = repositoryHost.getContentRepository(cmsService);
 
-  if (data.isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (data.isError) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p>Error: {data.error.message}</p>
-      </div>
-    );
-  }
-
-  if (!data.data) {
+export default async function ServerSide() {
+  
+  const data = await userRepository.get('user-id');
+  const homePage = await contentRepository.getHomePage();
+  
+  
+  if (!data) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p>No data found</p>
       </div>
     );
   }
-
+  
+  
+  if (!homePage) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p>No data found</p>
+      </div>
+    );
+  }
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      {JSON.stringify(data.data, null, 2)}
-      <SignedOut>
-        <SignInButton />
-        <SignUpButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-      <Link href="/server-side">Server Side Page</Link>
-
-      <Link href="/user">User Page</Link>
-
-      <Link href="/demo">Demo</Link>
-      <Link href="/admin-panel">Admin Panel</Link>
+      
+      {JSON.stringify(data, null, 2)}
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <ModeToggle />
+        <ModeToggle/>
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -64,6 +45,12 @@ export default function Home() {
           height={38}
           priority
         />
+        
+        <h1 className={
+          "text-3xl font-bold tracking-tight sm:text-4xl text-center"
+        }>
+          {homePage.title}
+        </h1>
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}

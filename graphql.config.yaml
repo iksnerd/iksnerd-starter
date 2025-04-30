@@ -1,0 +1,7 @@
+schema: cms-schema.graphql
+extensions:
+  endpoints:
+    Default GraphQL Endpoint:
+      url: https://eu-west-2.cdn.hygraph.com/content/cm8y6bom2062l07wfvzyk6lpi/master
+      user-agent: JS GraphQL
+      introspect: true

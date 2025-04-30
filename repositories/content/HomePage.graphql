@@ -1,0 +1,5 @@
+query GetHomePage {
+    homePages(first: 1) {
+        title
+    }
+}
