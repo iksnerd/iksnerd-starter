@@ -17,6 +17,7 @@ export * from "./ports/services/database-helpers";
 export * from "./ports/services/service-host";
 export * from "./ports/services/cms-service";
 export * from "./ports/services/email-service";
+export * from "./ports/services/vector-db-service";
 // export * from './ports/services/stripe-service';
 // export * from './ports/services/clerk-service';
 // export * from './ports/services/functions-service';

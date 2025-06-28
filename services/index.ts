@@ -1,10 +1,11 @@
 // import { ServiceHost, StorageService, StripeService } from "@/core";
 
-import { CmsService, EmailService, ServiceHost } from "@/core";
+import { CmsService, EmailService, ServiceHost, VectorDbService } from "@/core";
 import { authenticationService } from "./authentication/authentication-service";
 import { cmsService } from "@/services/cms/cms-service";
 import { databaseClientService } from "@/services/database/database-client-service";
 import { emailService } from "./email-service";
+import { vectorDbService } from "@/services/vector-db";
 // import { databaseClientService } from "./database/database-client-service";
 // import { fileUploadService } from "./file-upload/file-upload-service";
 // import { stripeService } from "./stripe-service/stripe-service";
@@ -32,6 +33,10 @@ export const serviceHost: ServiceHost = {
   },
   getEmailService(): EmailService {
     return emailService;
+  },
+
+  vectorDbService(): VectorDbService {
+    return vectorDbService;
   },
 
   // getClerkService(): ClerkService {

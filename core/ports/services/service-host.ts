@@ -9,10 +9,11 @@ import {
   // StorageService,
   // StripeService,
 } from "@/core";
+import { VectorDbService } from "@/core";
 
 export interface ServiceHost {
   getAuthenticationService(): AuthenticationService;
-
+  vectorDbService(): VectorDbService; // VectorDbService;
   // getDatabaseAdminService (): DatabaseService;
   getEmailService(): EmailService;
   getDatabaseClientService(): DatabaseClientService;

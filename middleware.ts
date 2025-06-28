@@ -6,11 +6,7 @@ const isPublicRoute = createRouteMatcher([
   "/",
   "/api/webhooks(.*)",
 ]);
-const isAdminRoute = createRouteMatcher([
-  "/admin-panel(.*)",
-  "/api/admin-panel(.*)",
-  "/trpc/admin-panel(.*)",
-]);
+const isAdminRoute = createRouteMatcher(["/admin-panel(.*)", "/api/chat(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
   if (!isPublicRoute(req)) {

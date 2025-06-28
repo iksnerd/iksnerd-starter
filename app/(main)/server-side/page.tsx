@@ -1,19 +1,17 @@
 import Image from "next/image";
-import { ModeToggle } from '@/components/shared/theme-toggle';
-import { repositoryHost } from '@/repositories';
+import { ModeToggle } from "@/components/shared/theme-toggle";
+import { repositoryHost } from "@/repositories";
 import { databaseService } from "@/services/database/database-admin-service";
-import { serviceHost } from '@/services';
+import { serviceHost } from "@/services";
 
-const cmsService = serviceHost.getCmsService()
+const cmsService = serviceHost.getCmsService();
 const userRepository = repositoryHost.getUserServerRepository(databaseService);
 const contentRepository = repositoryHost.getContentRepository(cmsService);
 
 export default async function ServerSide() {
-  
-  const data = await userRepository.get('user-id');
+  const data = await userRepository.get("user-id");
   const homePage = await contentRepository.getHomePage();
-  
-  
+
   if (!data) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -21,8 +19,7 @@ export default async function ServerSide() {
       </div>
     );
   }
-  
-  
+
   if (!homePage) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -30,13 +27,12 @@ export default async function ServerSide() {
       </div>
     );
   }
-  
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      
       {JSON.stringify(data, null, 2)}
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <ModeToggle/>
+        <ModeToggle />
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -45,10 +41,12 @@ export default async function ServerSide() {
           height={38}
           priority
         />
-        
-        <h1 className={
-          "text-3xl font-bold tracking-tight sm:text-4xl text-center"
-        }>
+
+        <h1
+          className={
+            "text-3xl font-bold tracking-tight sm:text-4xl text-center"
+          }
+        >
           {homePage.title}
         </h1>
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">

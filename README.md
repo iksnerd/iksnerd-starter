@@ -1,11 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [
 `create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world)
-
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fiksnerd%2Fiksnerd-starter&env=NEXT_PUBLIC_USE_MOCK_DATA,NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,CLERK_SECRET_KEY,NEXT_PUBLIC_CLERK_SIGN_IN_URL,NEXT_PUBLIC_CLERK_SIGN_UP_URL,NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL,NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL,FIREBASE_SERVICE_ACCOUNT,CLERK_WEBHOOK_SIGNING_SECRET,RESEND_API_KEY&envDescription=API%20keys%20needed%20for%20the%20services&redirect-url=https%3A%2F%2Fwww.iksnerd.xyz%2F&production-deploy-hook=Isknerd%20Starter%20Deploy&demo-title=Iksnerd%20Starter%20Demo&demo-url=https%3A%2F%2Fiksnerd-starter.vercel.app%2F)
 ## Setup
-
-
 
 ### Firebase Setup
 - Create a Firebase project
@@ -35,7 +32,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 - Enable Storage
 
 #### Admin SDK
-
 - Go to the Firebase project settings
 - Go to the Service accounts tab
 - Generate a new private key
@@ -52,15 +48,39 @@ Copy the `firebaseConfig` object from your Firebase project settings and replace
 - Get the Endpoints
 - Copy the endpoint for the GraphQL API - (High Performance Content API)
 - Paste the endpoint in the  `graphql.config.yaml` file in the root directory
-- Call the endpoint in order to get the schema
+- Call the endpoint to get the schema
 - A new file will be created in the root directory with the name `cms-schema.graphql`
-- Initialize the HyGraph project Content Api default settings in order to get access to the Content API
+- Initialize the HyGraph project Content Api default settings to get access to the Content API
+
+### Vector Database Setup - Qdrant
+
+[Qdrant](https://qdrant.tech) is a vector database that can be used to store and search vectors.
+
+[Local](https://qdrant.tech/documentation/quickstart/) is a self-hosted version of Qdrant that can be run in a Docker container.
+
+```bash
+docker run -p 6333:6333 -p 6334:6334 \
+    -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
+    qdrant/qdrant
+```
+
 
 
 ### Admin Panel
 - Enable organization in Clerk
 - 
 ### Styling
+- This project uses [Geist](https://vercel.com/font) for styling.
+- You can customize the theme in the `app/layout.tsx` file by modifying the `geist` object.
+- You can also use the `geist` object to customize the theme in the `app/globals.css` file.
+
+#### Components
+- The components are located in the `app/components` directory.
+
+Use the following command to add / update shadcn/ui components to the project:
+```bash
+npx shadcn@latest add -a -y -o
+```
 
 #### Favicons
 
@@ -76,6 +96,12 @@ Copy the `firebaseConfig` object from your Firebase project settings and replace
 ### Data Fetching
 
 ### Authentication
+- This project uses [Clerk](https://clerk.com) for authentication.
+
+
+### Vector Database
+- This project uses [Qdrant](https://qdrant.tech/documentation/quickstart/) for vector database.
+- Create a docker container for Qdrant or use the hosted version.
 
 ## Getting Started
 
