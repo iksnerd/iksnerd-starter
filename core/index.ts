@@ -12,6 +12,7 @@ export * from "./ports/services/authentication-service";
 export * from "./ports/services/database-admin-service";
 export * from "./ports/services/database-client-service";
 export * from "./ports/services/database-helpers";
+export * from "./ports/services/file-upload-service";
 // export * from './ports/services/file-upload-service';
 // export * from './ports/services/file-service';
 export * from "./ports/services/service-host";

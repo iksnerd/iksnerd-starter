@@ -4,6 +4,7 @@ import {
   DatabaseClientService,
   CmsService,
   EmailService,
+  FileUploadService,
   // FileUploadService,
   // FunctionsService,
   // StorageService,
@@ -19,7 +20,7 @@ export interface ServiceHost {
   getDatabaseClientService(): DatabaseClientService;
 
   getCmsService(): CmsService; // CmsService;
-  // getFileUploadService(): FileUploadService;
+  getFileUploadService(): FileUploadService;
   // getStorageService(): StorageService;
   // getStripeService(): StripeService;
   // getFunctionsService(): FunctionsService;

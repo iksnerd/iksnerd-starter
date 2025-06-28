@@ -6,6 +6,7 @@ import { cmsService } from "@/services/cms/cms-service";
 import { databaseClientService } from "@/services/database/database-client-service";
 import { emailService } from "./email-service";
 import { vectorDbService } from "@/services/vector-db";
+import { fileUploadService } from "@/services/file-upload/file-upload-service";
 // import { databaseClientService } from "./database/database-client-service";
 // import { fileUploadService } from "./file-upload/file-upload-service";
 // import { stripeService } from "./stripe-service/stripe-service";
@@ -51,9 +52,9 @@ export const serviceHost: ServiceHost = {
     return databaseClientService;
   },
 
-  // getFileUploadService() {
-  //   return fileUploadService;
-  // },
+  getFileUploadService() {
+    return fileUploadService;
+  },
   //
   // getStripeService(): StripeService {
   //   return stripeService;
