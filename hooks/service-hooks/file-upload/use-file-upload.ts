@@ -4,7 +4,7 @@ import {
   FileValidationConfig,
   FileValidationError,
   validateFile,
-} from "@/lib/files/file-validation";
+} from "@/utils/files/file-validation";
 import { UploadError, UploadPayload, UploadTask } from "@/core";
 
 const fileUploadService = serviceHost.getFileUploadService();

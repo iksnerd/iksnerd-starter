@@ -1,4 +1,4 @@
-import { ErrorBase } from "@/lib/errors/error-base";
+import { ErrorBase } from "@/utils/errors/error-base";
 
 type UploadErrorName = "unauthorized" | "unknown";
 

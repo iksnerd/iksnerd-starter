@@ -12,6 +12,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 - Enable Firestore
 - Enable Authentication
 - Enable Google Authentication
+- Enable Firebase Storage
 
 ### Clerk Setup
 - Create a Clerk project
@@ -42,7 +43,6 @@ Copy the `firebaseConfig` object from your Firebase project settings and replace
 `src/lib/firebase.ts`.
 
 ### CMS setup - HyGraph
-
 - Create a HyGraph project
 - Go to the HyGraph project settings
 - Get the Endpoints
@@ -64,11 +64,9 @@ docker run -p 6333:6333 -p 6334:6334 \
     qdrant/qdrant
 ```
 
-
-
 ### Admin Panel
 - Enable organization in Clerk
-- 
+
 ### Styling
 - This project uses [Geist](https://vercel.com/font) for styling.
 - You can customize the theme in the `app/layout.tsx` file by modifying the `geist` object.
@@ -82,26 +80,27 @@ Use the following command to add / update shadcn/ui components to the project:
 npx shadcn@latest add -a -y -o
 ```
 
-#### Favicons
 
-- Add favicons to the `public` directory. You can use [Favicon Generator](https://realfavicongenerator.net/) to generate
-  favicons for different platforms.
 
 #### Icons
-
 - use the icons.tsx file to add icons to the project.
 
 ### Metadata
 
-### Data Fetching
+#### Favicons
+- Add favicons to the `public` directory. You can use [Favicon Generator](https://realfavicongenerator.net/) to generate
+  favicons for different platforms.
 
 ### Authentication
 - This project uses [Clerk](https://clerk.com) for authentication.
 
-
 ### Vector Database
 - This project uses [Qdrant](https://qdrant.tech/documentation/quickstart/) for vector database.
 - Create a docker container for Qdrant or use the hosted version.
+
+### State management
+- We use nuqs [Nuqs](https://nuqs.47ng.com) 
+
 
 ## Getting Started
 
