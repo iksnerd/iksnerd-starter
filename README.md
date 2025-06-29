@@ -80,8 +80,6 @@ Use the following command to add / update shadcn/ui components to the project:
 npx shadcn@latest add -a -y -o
 ```
 
-
-
 #### Icons
 - use the icons.tsx file to add icons to the project.
 
@@ -94,13 +92,12 @@ npx shadcn@latest add -a -y -o
 ### Authentication
 - This project uses [Clerk](https://clerk.com) for authentication.
 
-### Vector Database
-- This project uses [Qdrant](https://qdrant.tech/documentation/quickstart/) for vector database.
-- Create a docker container for Qdrant or use the hosted version.
+### Ai Providers
+- This project uses [Ollama](https://ollama.com) for local AI development.
+- You can use the Ollama CLI to run local models and generate embeddings.
 
 ### State management
 - We use nuqs [Nuqs](https://nuqs.47ng.com) 
-
 
 ## Getting Started
 

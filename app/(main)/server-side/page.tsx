@@ -3,10 +3,15 @@ import { ModeToggle } from "@/components/shared/theme-toggle";
 import { repositoryHost } from "@/repositories";
 import { databaseService } from "@/services/database/database-admin-service";
 import { serviceHost } from "@/services";
+import { Metadata } from "next";
 
 const cmsService = serviceHost.getCmsService();
 const userRepository = repositoryHost.getUserServerRepository(databaseService);
 const contentRepository = repositoryHost.getContentRepository(cmsService);
+
+export const metadata: Metadata = {
+  title: "Server Side Page",
+};
 
 export default async function ServerSide() {
   const data = await userRepository.get("user-id");
