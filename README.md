@@ -74,6 +74,14 @@ docker run -p 6333:6333 -p 6334:6334 \
 
 #### Components
 - The components are located in the `app/components` directory.
+- The ai components are located in the `app/components/ui/kibo-ui` directory.
+
+[shadcn/ui](https://ui.shadcn.com) is used for the UI components in this project.
+- The components are located in the `app/components/ui` directory.
+
+[kibo-ui](https://www.kibo-ui.com/components/ai-branches) is used for the AI components in this project.
+- The components are located in the `app/components/ui/kibo-ui` directory.
+
 
 Use the following command to add / update shadcn/ui components to the project:
 ```bash
@@ -91,13 +99,19 @@ npx shadcn@latest add -a -y -o
 
 ### Authentication
 - This project uses [Clerk](https://clerk.com) for authentication.
+- The data is synced with Firebase Authentication via Clerk's Firebase integration.
+- We use webhooks to sync data between Clerk and Firebase. (see the app/api/webhooks.ts file)
 
 ### Ai Providers
 - This project uses [Ollama](https://ollama.com) for local AI development.
 - You can use the Ollama CLI to run local models and generate embeddings.
 
-### State management
-- We use nuqs [Nuqs](https://nuqs.47ng.com) 
+### State management, Data Fetching, and Forms
+- We use nuqs [Nuqs](https://nuqs.47ng.com) for url state management.
+- we use [Zustand](https://pmnd.rs/zustand) for global state management.
+- We use [React Query](https://tanstack.com/query/latest/docs/react/overview) for data fetching and caching.
+- We use [React Hook Form](https://react-hook-form.com) for form management.
+- We use [Zod](https://zod.dev) for schema validation.
 
 ## Getting Started
 

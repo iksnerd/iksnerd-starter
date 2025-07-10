@@ -1,6 +1,7 @@
 // Entities
 export * from "./entities/base";
 export * from "./entities/user";
+export * from "./entities/user-chat";
 export * from "./entities/home-page";
 
 // Ports
@@ -25,6 +26,7 @@ export * from "./ports/services/vector-db-service";
 
 // Repositories
 export * from "./ports/repositories/user";
+export * from "./ports/repositories/user-chat";
 export * from "./ports/repositories/content";
 
 export * from "./ports/repositories/repository-helper";

@@ -9,7 +9,7 @@ export enum EMBEDDINGS_MODELS {
   TEXT_EMBEDDING_004 = "text-embedding-004",
 }
 
-export const devModelOn = true;
+export const devModelOn = false;
 export const mainModel = MODELS.GEMINI_2_5_FLASH_LITE_PREVIEW;
 
 export type GoogleGenerativeAIModelId =

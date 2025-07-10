@@ -1,15 +1,13 @@
-import { CmsService } from '@/core';
-import { hygraphClient } from '@/infrastructure/hygraph/client';
+import { CmsService } from "@/core";
+import { hygraphClient } from "@/infrastructure";
 
 export const cmsService: CmsService = {
-  async query<T> (query: string): Promise<T | null> {
-    
+  async query<T>(query: string): Promise<T | null> {
     try {
-      const response = await hygraphClient<T>(query);
-      return response;
+      return await hygraphClient<T>(query);
     } catch (error) {
-      console.error('Error fetching data from CMS:', error);
+      console.error("Error fetching data from CMS:", error);
       return null;
     }
-  }
+  },
 };

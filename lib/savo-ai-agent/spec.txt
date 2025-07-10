@@ -1,0 +1,142 @@
+I want to create an agent using Next js and Vercel ai sdk for a business.
+
+This is the exaplanation of the client
+
+// ——
+In my job we have conver and retention
+
+Conver get lead and conver it to a client
+
+Then when he is client moves to ret and they try to bring more money from him
+
+Now when this lead comes to conver they write commemts like
+
+Age : 30
+
+Work : doctor
+
+Income : 10,000 month
+
+City : johansburg
+
+Family : wife 3 kids
+
+Now we make a teamplate and agents fill up client info
+
+I copy past this template and then the script will read it and score it
+
+So imagine a teacher makes tests and then puts them to score it for him
+11:00 AM
+// ——
+
+The agent should use some tools and the Gemini models from google to help the business
+
+
+Business context
+
+Business Context for the KYC Scoring System (CFD | FSCA Regulated)
+
+🔹 Industry Overview
+
+The company operates in the Contract for Difference (CFD) trading industry, offering retail and professional clients access to a range of financial instruments — including forex, indices, commodities, and cryptocurrencies — via leveraged trading platforms. As a FSCA-licensed brokerage, strict regulatory and compliance standards are enforced, especially regarding KYC (Know Your Customer), AML (Anti-Money Laundering), and responsible trading practices.
+
+⸻
+
+🔹 Why KYC Scoring Matters
+
+Given the nature of leveraged trading and the FSCA’s focus on investor protection, it’s critical to assess both the financial suitability and risk profile of potential clients before conversion.
+
+The KYC Scoring System is d... Read more
+
+Background
+
+The company operates as a Contract for Difference (CFD) trading provider, regulated by the Financial Sector Conduct Authority (FSCA) in South Africa. As a high-risk leveraged trading platform, we are legally and ethically obligated to assess the financial suitability and investment experience of all clients before onboarding.
+
+⸻
+
+🔹 Purpose of the KYC Scoring System
+
+This scoring system is used exclusively by the Conversion Team to:
+	1.	Qualify potential clients during the first contact
+	2.	Segment leads by investment readiness and financial profile
+	3.	Avoid wasting time on low-potential, unqualified leads
+	4.	Align with FSCA compliance on suitability and responsible marketing
+
+⸻
+
+🔹 Why It Matters for Conversion
+
+Conversion Agents are the first and most critical touchpoint. This system allows you to:
+	•	🎯 Focus your time and energy on high-probability closers
+	•	🚩 Filter out unqualified leads before they reach funding stage
+	•	✅ Show that we are screening clients responsibly, as required by regulation
+	•	📈 Improve your conversion rate, deposits, and commission
+
+
+This is the scoring system
+
+
+KYC Scoring System for African Leads 
+
+KYC Scoring System for Conversion Agents - African Markets Use this to score leads based on 
+
+KYC responses. Total Score: /20 
+
+. How old are you?
+* 🔸 Score:  
+    * 35–55 years old → 3 points ✅ (Golden age)  
+    * 25–34 or 56–65 → 2 points  
+    * 18–24 or 66+ → 1 point
+
+
+ What do you do for a living?  (Ask clearly and dig a bit into what they actually do day-to-day)
+* 🔸 Score:  
+    * Owns a business → 3 points  
+    * Full-time job → 2 points  
+    * Part-time, freelance, or student → 1 point  
+    * Unemployed → 0 points
+
+. Marital Status & Kids (Max 2 points)
+* Single, no kids → 2 pts  
+* Married, no kids → 1.5 pts  
+* Married or single with kids → 1 pt  
+* Separated/Widowed with dependents → 0.5 pt  
+
+4. Location (Country & City) (Max 2 poin
+
+Tier	Countries	Score
+Tier 1 – Strong leads	South Africa (JHB, CPT, DBN), Kenya (Nairobi), Nigeria (Lagos, Abuja), Egypt, Morocco, Ghana (Accra)	2 pts
+Tier 2 – Average potential	Botswana, Tunisia, Algeria, Namibia, Rwanda, Zambia, Senegal, Côte d'Ivoire (Abidjan)	1 pt
+Tier 3 – Weak markets	Zimbabwe, DR Congo, Sudan, Somalia, Malawi, Mozambique, Central African Republic, Sierra Leone	0 pts
+
+5. Work Situation (Max 2 points)
+* Full-time job or Owns business → 2 pts  
+* Freelancer or Part-time → 1 pt  
+* Unemployed or Student → 0 pts  
+6. Do you have any savings or investments? (Max 2 points)
+* Yes → 2 pts  
+* No → 0 pts  
+
+
+
+7. How much saved/invested? (Max 4 points)
+* $10,000+ → 4 pts  
+* $5,000–$9,999 → 3 pts  
+* $1,000–$4,999 → 2 pts  
+* Less than $1,000 → 1 pt  
+* None → 0 pts  
+
+
+
+8. Where is the money invested? (Max 3 points)
+* Crypto, Stocks, Online platforms → 3 pts  
+* Real Estate, Business capital → 2 pts  
+* Bank savings, cash only → 1 pt  
+* No investing knowledge → 0 pts
+
+
+
+Score	Lead Potential
+15–20	High 🔥
+10–14	Medium ⚖️
+0–9	Low ❄️

@@ -3,13 +3,18 @@ import {
   DatabaseClientService,
   DatabaseService,
   UserRepository,
-  ContentRepository
-} from '@/core';
+  ContentRepository,
+  UserChatRepository,
+} from "@/core";
 
 export interface RepositoryHost {
   getUserRepository(databaseService: DatabaseClientService): UserRepository;
+  getUserChatRepository(
+    databaseService: DatabaseClientService,
+  ): UserChatRepository;
   getUserServerRepository(databaseService: DatabaseService): UserRepository;
-  getContentRepository(
-    cmsService: CmsService
-  ): ContentRepository;
+  getUserChatServerRepository(
+    databaseService: DatabaseService,
+  ): UserChatRepository;
+  getContentRepository(cmsService: CmsService): ContentRepository;
 }

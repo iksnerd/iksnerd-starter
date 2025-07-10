@@ -1,12 +1,8 @@
-import { CoreMessage, Message, streamText } from "ai";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
+import { appendResponseMessages, streamText } from "ai";
 
 import { systemPrompt } from "@/lib/ai/system-prompt";
-import {
-  devModelOn,
-  GoogleGenerativeAIModelId,
-  mainModel,
-} from "@/lib/ai/constants";
+import { devModelOn, mainModel } from "@/lib/ai/constants";
 import { localChatModel } from "@/lib/ai/providers/ollama";
 import {
   googleProvider,
@@ -14,6 +10,7 @@ import {
 } from "@/lib/ai/providers/google";
 import { updateUserUsage } from "@/lib/ai/update-user-usage";
 import { tools } from "@/lib/ai/tools";
+import { createOrUpdateUserChat } from "@/lib/ai/update-user-chat";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -23,25 +20,9 @@ export type Language = {
   code: string;
 };
 
-export type RequestBody = {
-  messages?: CoreMessage[] | Omit<Message, "id">[];
-  language: Language;
-  webSearchEnabled: boolean;
-  model: GoogleGenerativeAIModelId;
-  aboutMe?: string;
-  personality?: string;
-  creativity?: number[];
-  responseFormat?: string;
-  customInstructions?: string;
-  location: {
-    lat: number;
-    lon: number;
-  };
-};
-
 export async function POST(req: Request) {
   try {
-    const { messages, model } = (await req.json()) as RequestBody;
+    const { messages, model } = await req.json();
 
     const user = await currentUser();
 
@@ -62,7 +43,7 @@ export async function POST(req: Request) {
     const result = streamText({
       model: devModelOn
         ? localChatModel
-        : googleProvider(model, {
+        : googleProvider("gemini-2.5-flash-preview-04-17", {
             useSearchGrounding: false,
           }),
       tools: tools,
@@ -73,10 +54,21 @@ export async function POST(req: Request) {
       toolChoice: "auto",
       maxSteps: 5,
       system: systemPrompt,
-      maxTokens: 2000,
+      maxTokens: 4096,
       messages,
       temperature: 0,
-      onFinish: async ({ usage }) => {
+      onFinish: async ({ usage, response }) => {
+        const msg = appendResponseMessages({
+          messages,
+          responseMessages: response.messages,
+        });
+
+        await createOrUpdateUserChat({
+          chatId: user.id,
+          userId: user.id,
+          messages: msg,
+        });
+
         await updateUserUsage({
           usage,
           model: model,
@@ -87,10 +79,9 @@ export async function POST(req: Request) {
       },
     });
 
+    console.log("Streaming response started for user:", user.id);
     return result.toDataStreamResponse({
-      sendSources: true,
       sendUsage: true,
-      sendReasoning: true,
     });
   } catch (error) {
     console.error("[CHAT_API_ERROR]", error);

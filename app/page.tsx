@@ -51,6 +51,8 @@ export default function Home() {
       <Link href="/server-side">Server Side Page</Link>
 
       <Link href="/user">User Page</Link>
+      <Link href="/chat">Chat Page</Link>
+      <Link href="/savo-agent">Savo Agent Page</Link>
 
       <Link href="/demo">Demo</Link>
       <Link href="/admin-panel">Admin Panel</Link>
