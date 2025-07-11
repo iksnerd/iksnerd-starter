@@ -117,7 +117,7 @@ export type AIReasoningTriggerProps = ComponentProps<
 export const AIReasoningTrigger = memo(
   ({
     className,
-    title = "Reasoning",
+    // title = "Reasoning",
     children,
     ...props
   }: AIReasoningTriggerProps) => {
@@ -131,6 +131,9 @@ export const AIReasoningTrigger = memo(
         )}
         {...props}
       >
+        {/*{title && (*/}
+        {/*  <h3 className="font-medium text-sm text-muted-foreground">{title}</h3>*/}
+        {/*)}*/}
         {children ?? (
           <>
             {isStreaming && duration === 0 ? (

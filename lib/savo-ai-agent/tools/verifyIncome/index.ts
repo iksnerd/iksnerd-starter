@@ -115,7 +115,7 @@ function extractIncomeBenchmarks(
     min: totalSalaries[0] || 0,
     max: totalSalaries[totalSalaries.length - 1] || 0,
     average: totalSalaries.reduce((a, b) => a + b, 0) / totalSalaries.length,
-    source: "market data",
+    source,
   };
 }
 
@@ -140,18 +140,37 @@ function getFallbackSalaryData(
     business: { min: 500, max: 10000, avg: 3000 }, // Wide range for business owners
   };
 
+  // Country-specific adjustment factors
+  const countryMultipliers: Record<string, number> = {
+    "south africa": 1.2,
+    nigeria: 0.8,
+    kenya: 0.7,
+    ghana: 0.6,
+    egypt: 0.9,
+    morocco: 0.8,
+    tanzania: 0.5,
+    uganda: 0.4,
+  };
+
+  const countryMultiplier = countryMultipliers[country.toLowerCase()] || 1.0;
+
   for (const [key, data] of Object.entries(baseSalaries)) {
     if (occupationLower.includes(key)) {
       return {
-        min: data.min,
-        max: data.max,
-        average: data.avg,
-        source: "fallback estimates",
+        min: Math.round(data.min * countryMultiplier),
+        max: Math.round(data.max * countryMultiplier),
+        average: Math.round(data.avg * countryMultiplier),
+        source: `fallback estimates for ${country}`,
       };
     }
   }
 
-  return { min: 500, max: 3000, average: 1500, source: "general estimate" };
+  return {
+    min: Math.round(500 * countryMultiplier),
+    max: Math.round(3000 * countryMultiplier),
+    average: Math.round(1500 * countryMultiplier),
+    source: `general estimate for ${country}`,
+  };
 }
 
 function assessIncomeCredibility(
@@ -216,15 +235,35 @@ function generateIncomeRecommendation(
   ratio: number,
   occupation: string,
 ): string {
+  const occupationLower = occupation.toLowerCase();
+  const isBusinessOwner =
+    occupationLower.includes("business") ||
+    occupationLower.includes("entrepreneur") ||
+    occupationLower.includes("owner");
+
   switch (level) {
     case "CREDIBLE":
-      return "Income appears reasonable for stated profession - proceed with standard verification";
+      if (ratio > 2) {
+        return `Income is ${Math.round(ratio * 100)}% above average for ${occupation} - verify with recent tax returns or business statements`;
+      }
+      return `Income appears reasonable for ${occupation} - proceed with standard verification`;
+
     case "QUESTIONABLE":
-      return "Income claim requires additional documentation - request pay slips or tax returns";
+      if (ratio > 3 && isBusinessOwner) {
+        return `Business income claim is ${Math.round(ratio * 100)}% above average - request detailed business financials and tax returns`;
+      } else if (ratio > 3) {
+        return `Income claim significantly exceeds ${occupation} averages - require comprehensive income documentation`;
+      }
+      return `Income claim for ${occupation} requires additional documentation - request pay slips or tax returns`;
+
     case "UNCERTAIN":
-      return "Income verification inconclusive - consider additional due diligence";
+      if (ratio < 0.5) {
+        return `Income below typical ${occupation} range - verify if part-time or entry-level position`;
+      }
+      return `Income verification for ${occupation} inconclusive - consider additional due diligence`;
+
     default:
-      return "Manual review recommended for income validation";
+      return `Manual review recommended for ${occupation} income validation`;
   }
 }
 

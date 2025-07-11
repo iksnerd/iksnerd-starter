@@ -29,26 +29,31 @@ export type AIResponseProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 const components: Options["components"] = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ol: ({ node, children, className, ...props }) => (
     <ol className={cn("ml-4 list-outside list-decimal", className)} {...props}>
       {children}
     </ol>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   li: ({ node, children, className, ...props }) => (
     <li className={cn("py-1", className)} {...props}>
       {children}
     </li>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ul: ({ node, children, className, ...props }) => (
     <ul className={cn("ml-4 list-outside list-decimal", className)} {...props}>
       {children}
     </ul>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   strong: ({ node, children, className, ...props }) => (
     <span className={cn("font-semibold", className)} {...props}>
       {children}
     </span>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   a: ({ node, children, className, ...props }) => (
     <a
       className={cn("font-medium text-primary underline", className)}
@@ -59,6 +64,7 @@ const components: Options["components"] = {
       {children}
     </a>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   h1: ({ node, children, className, ...props }) => (
     <h1
       className={cn("mt-6 mb-2 font-semibold text-3xl", className)}
@@ -67,6 +73,7 @@ const components: Options["components"] = {
       {children}
     </h1>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   h2: ({ node, children, className, ...props }) => (
     <h2
       className={cn("mt-6 mb-2 font-semibold text-2xl", className)}
@@ -75,16 +82,19 @@ const components: Options["components"] = {
       {children}
     </h2>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   h3: ({ node, children, className, ...props }) => (
     <h3 className={cn("mt-6 mb-2 font-semibold text-xl", className)} {...props}>
       {children}
     </h3>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   h4: ({ node, children, className, ...props }) => (
     <h4 className={cn("mt-6 mb-2 font-semibold text-lg", className)} {...props}>
       {children}
     </h4>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   h5: ({ node, children, className, ...props }) => (
     <h5
       className={cn("mt-6 mb-2 font-semibold text-base", className)}
@@ -93,11 +103,13 @@ const components: Options["components"] = {
       {children}
     </h5>
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   h6: ({ node, children, className, ...props }) => (
     <h6 className={cn("mt-6 mb-2 font-semibold text-sm", className)} {...props}>
       {children}
     </h6>
   ),
+
   pre: ({ node, className, children }) => {
     let language = "javascript";
 

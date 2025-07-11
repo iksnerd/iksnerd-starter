@@ -1,4 +1,4 @@
-import { clerkClient, currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { streamText } from "ai";
 
 import { devModelOn, mainModel } from "@/lib/ai/constants";
@@ -19,8 +19,6 @@ export async function POST(req: Request) {
     if (!user) {
       return new Response("Unauthorized", { status: 401 });
     }
-
-    const d = await clerkClient();
 
     if (!messages || messages.length === 0) {
       return new Response("No messages provided", { status: 400 });
@@ -44,26 +42,6 @@ export async function POST(req: Request) {
       maxTokens: 4096,
       messages,
       temperature: 0.1, // Slightly higher for more natural responses while maintaining accuracy
-      onFinish: async ({ usage, response }) => {
-        // const msg = appendResponseMessages({
-        //   messages,
-        //   responseMessages: response.messages,
-        // });
-        // // Store Savo agent conversations with a specific chat ID prefix
-        // await createOrUpdateUserChat({
-        //   chatId: `savo-${user.id}`,
-        //   userId: user.id,
-        //   messages: msg,
-        // });
-        //
-        // await updateUserUsage({
-        //   usage,
-        //   model: model,
-        //   user,
-        //   clerkClientInstance: d,
-        //   messages,
-        // });
-      },
     });
 
     console.log("Savo agent streaming response started for user:", user.id);
