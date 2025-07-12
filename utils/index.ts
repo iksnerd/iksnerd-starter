@@ -13,3 +13,6 @@ export * from "./data/clear";
 
 // Media Query
 export * from "./media-query/use-media-query";
+
+// Firebase utils
+export * from "./firebase-json-to-env";

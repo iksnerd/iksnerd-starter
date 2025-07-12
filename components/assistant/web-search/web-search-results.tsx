@@ -37,6 +37,7 @@ export function GetWebSearchResults({ result, toolCall }: Props) {
               : "pending"
         }
       />
+
       <AIToolContent>
         <AIToolParameters parameters={toolCall.args} />
         {result && (

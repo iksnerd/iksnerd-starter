@@ -7,8 +7,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 ### Firebase Setup
 - Create a Firebase project
 - Create an App in the Firebase project
-- Copy the `firebaseConfig` object from your Firebase project settings after creating the app
-- Paste the `firebaseConfig` object in `/infrastructure/firebase/client.ts`
 - Enable Firestore
 - Enable Authentication
 - Enable Google Authentication
@@ -25,12 +23,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 - Create an App in the Firebase project
 - Copy the  `firebaseConfig` object from your Firebase project settings after creating the app
 - Paste the `firebaseConfig` object in `/infrastructure/firebase/client.ts`
-- Enable Firestore
-- Enable Authentication
-- Enable Google Authentication
-- Enable Email/Password Authentication
-- Enable Anonymous Authentication
-- Enable Storage
 
 #### Admin SDK
 - Go to the Firebase project settings
