@@ -15,11 +15,6 @@ import { createOrUpdateUserChat } from "@/lib/ai/update-user-chat";
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-export type Language = {
-  name: string;
-  code: string;
-};
-
 export async function POST(req: Request) {
   try {
     const { messages, model } = await req.json();
@@ -43,7 +38,7 @@ export async function POST(req: Request) {
     const result = streamText({
       model: devModelOn
         ? localChatModel
-        : googleProvider("gemini-2.5-flash-preview-04-17", {
+        : googleProvider("gemini-2.5-flash", {
             useSearchGrounding: false,
           }),
       tools: tools,

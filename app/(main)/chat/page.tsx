@@ -57,9 +57,8 @@ import { ToolExecutionError, UIMessage } from "ai";
 import { BurnRate } from "@/lib/ai/components/BurnRate";
 import { useChat } from "@ai-sdk/react";
 import { useUser } from "@clerk/nextjs";
-import { GetInformation } from "@/components/assistant/law-search/get-law-information";
-import { GetWebSearchResults } from "@/components/assistant/web-search/web-search-results";
 import { useChatHistory } from "@/hooks/repository-hooks/user-chat/use-user-chat";
+import { getToolByName } from "@/lib/ai/tools";
 // const vectorDbService = serviceHost.vectorDbService();
 const models = [
   { id: "gpt-4", name: "GPT-4" },
@@ -73,26 +72,17 @@ const models = [
   { id: "mistral-7b", name: "Mistral 7B" },
 ];
 
-// const suggestions = [
-//   "What are the latest trends in AI?",
-//   "How does machine learning work?",
-//   "Explain quantum computing",
-//   "Best practices for React development",
-//   "Tell me about TypeScript benefits",
-//   "How to optimize database queries?",
-//   "What is the difference between SQL and NoSQL?",
-//   "Explain cloud computing basics",
-// ];
-
 const suggestions = [
-  `Какви са сроковете за подаване на годишна данъчна декларация по ЗКПО?`,
-  `Обясни ми как се изчислява ДДС при внос на стоки от ЕС?`,
-  `Какви са изискванията за регистрация по ЗДДС в България?`,
-  `Как се отчитат амортизации на активи според българското законодателство?`,
-  `Какви са последните промени в Закона за счетоводството?`,
-  `Как да осчетоводя разходи за командировки на служители?`,
-  `Какви са санкциите при закъснение с подаване на данъчна декларация?`,
-  `Обясни ми процедурата за коригиране на счетоводна грешка от минал период.`,
+  "Какво ще е времето в София утре?",
+  "Какви са последните новини в България?",
+  "Как да създам CV?",
+  "Какви са изискванията за работа в IT сектора?",
+  "Как да се подготвя за интервю за работа?",
+  "Какви са най-добрите практики за управление на времето?",
+  "Как да подобря комуникационните си умения?",
+  "Какви са основните стъпки за започване на собствен бизнес?",
+  "Как да се справя със стреса на работното място?",
+  "Какви са тенденциите в дигиталния маркетинг през 2024 година?",
 ];
 
 interface ToolErrorProps {
@@ -376,7 +366,7 @@ function ToolResult({ part }: ToolResultProps) {
           description={
             toolInvocation.step ? `Step ${toolInvocation.step}` : "Preparing..."
           }
-          name={toolInvocation.toolName}
+          name={getToolByName(toolInvocation.toolName).name}
           status="pending"
         />
       </AITool>
@@ -390,7 +380,7 @@ function ToolResult({ part }: ToolResultProps) {
           description={
             toolInvocation.step ? `Step ${toolInvocation.step}` : "Working..."
           }
-          name={toolInvocation.toolName}
+          name={getToolByName(toolInvocation.toolName).name}
           status="running"
         />
       </AITool>
@@ -399,20 +389,6 @@ function ToolResult({ part }: ToolResultProps) {
 
   if (toolInvocation.state === "result") {
     switch (toolInvocation.toolName) {
-      case "getBulgarianLegalInfo":
-        return (
-          <GetInformation
-            toolCall={toolInvocation}
-            result={toolInvocation.result}
-          />
-        );
-      case "getInformationFromTheWeb":
-        return (
-          <GetWebSearchResults
-            toolCall={toolInvocation}
-            result={toolInvocation.result}
-          />
-        );
       case "getBurnRate":
         return (
           <AITool>
@@ -420,7 +396,7 @@ function ToolResult({ part }: ToolResultProps) {
               description={
                 toolInvocation.step ? `Step ${toolInvocation.step}` : undefined
               }
-              name={toolInvocation.toolName}
+              name={getToolByName(toolInvocation.toolName).name}
               status="completed"
             />
             <AIToolParameters parameters={toolInvocation.args}>

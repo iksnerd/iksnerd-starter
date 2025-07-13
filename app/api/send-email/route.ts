@@ -4,7 +4,10 @@ import { ReactElement } from "react";
 import { SendEmailPayload } from "@/core";
 import { NextRequest } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY || "");
+// const apiKey = process.env.RESEND_API_KEY;
+const apiKey = "your-resend-api-key-here"; // Replace with your actual Resend API key
+
+const resend = new Resend(apiKey);
 
 export async function POST(req: NextRequest): Promise<Response> {
   const body = (await req.json()) as SendEmailPayload;
